@@ -1,0 +1,172 @@
+.navbar {
+  transition: background-color 0.3s ease;
+}
+
+.navbar:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.nav-link {
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #ff921e;
+  /* Change color on hover */
+}
+
+.nav-link.active {
+  font-weight: bold;
+  color: #ff921e;
+  /* Active link color */
+}
+
+.shadow-sm {
+  box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075) !important;
+}
+
+.bi-journals:hover {
+  color: #ff921e;
+}
+
+/* Center the form and add spacing */
+.form-container {
+  max-width: 1320px;
+  margin: 2rem auto;
+}
+
+/* Form styles */
+.form-label {
+  color: #343a40;
+}
+
+.form-control {
+  border-radius: 0.25rem;
+  border-color: #ced4da;
+}
+
+/* Card styling */
+.card {
+  border: none;
+  border-radius: 0.5rem;
+  transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card-title {
+  color: #007bff;
+}
+
+
+/* Animate the form and title */
+.animate__animated.animate__fadeInUp,
+.animate__animated.animate__fadeInDown {
+  animation-duration: 0.8s;
+}
+
+/* Add animation pulse to the submit button */
+.btn-primary.animate__animated.animate__pulse {
+  animation-iteration-count: infinite;
+  animation-duration: 2s;
+}
+
+.note-title {
+  overflow-wrap: break-word;
+  /* Break long words */
+  margin: 0;
+  /* Remove default margin */
+  flex-grow: 1;
+  /* Allow title to take available space */
+}
+
+.button-container {
+  display: flex;
+  /* Use flex to arrange buttons horizontally */
+  gap: 0.1rem;
+  /* Add space between buttons */
+  flex-shrink: 0;
+  /* Prevent buttons from shrinking */
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+}
+
+/* Add this to your CSS file */
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 1.5s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+.text-color {
+  color: #ff921e;
+}
+
+/* Custom modal header style */
+.modal-header.bg-dark {
+  background-color: #020202 !important;
+  /* Custom dark shade */
+}
+
+.modal-header .btn-close-white {
+  filter: invert(1);
+  color: white;
+  /* Inverts the button color to make it white on dark */
+}
+
+/* Style for the Avatar (circle with first initial) */
+.avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #ff921e; /* Blue background for the avatar */
+  color: white;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+}
+
+.cbtn:hover{
+  color: #ff921e;
+}
+
+
+
+.profile-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #ff921e;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  margin: 0 auto;
+  text-transform: uppercase;
+}
+
+/* Edit Profile Button Animation */
+.edit-profile-btn {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.edit-profile-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(25, 33, 42, 0.4);
+  background-color: #030406;
+}
