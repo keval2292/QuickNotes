@@ -7,17 +7,17 @@ const NoteState = (props) => {
 
   const host = "http://localhost:5000";
   const navigate = useNavigate();
-  const [notes, setNotes] = useState([]); // Ensure this is an array
+  const [notes, setNotes] = useState([]); 
   const [alert, setAlert] = useState({ message: '', type: '', show: false });
 
-  // Function to show the alert
+  
   const showAlert = (message, type) => {
     setAlert({ message, type, show: true });
     setTimeout(() => setAlert({ ...alert, show: false }), 3000);
     return true;
   };
 
-  // Fetch notes from API
+  
   const getNotes = async () => {
     try {
       const token = localStorage.getItem('token');

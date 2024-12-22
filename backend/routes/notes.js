@@ -4,7 +4,7 @@ const getuser = require('../middleware/getuser');
 const Notes = require('../models/Notes');
 const { body, validationResult } = require('express-validator');
 
-// Route to get notes for the authenticated user
+
 router.get('/getnotes', getuser, async (req, res) => {
     try {
         const notes = await Notes.find({ user: req.user.id });
@@ -14,7 +14,7 @@ router.get('/getnotes', getuser, async (req, res) => {
     }
 });
 
-// Route to add a new note for the authenticated user
+
 router.post(
     '/addnotes',
     getuser,
@@ -47,7 +47,7 @@ router.post(
     }
 );
 
-// Route to update a note by ID
+
 router.put(
     '/updatenote/:id',
     getuser,
@@ -66,7 +66,7 @@ router.put(
         const noteId = req.params.id;
 
         try {
-            // Find the note and check if the user is the owner
+            
             const note = await Notes.findById(noteId);
             if (!note) {
                 return res.status(404).json({ error: 'Note not found' });
@@ -76,8 +76,8 @@ router.put(
                 return res.status(403).json({ error: 'Not authorized to update this note' });
             }
 
-            // Update the note
-            note.title = title || note.title; // Keep existing value if new one is not provided
+            
+            note.title = title || note.title; 
             note.description = description || note.description;
             note.tag = tag || note.tag;
 
@@ -89,12 +89,12 @@ router.put(
     }
 );
 
-// Route to delete a note by ID
+
 router.delete('/deletenote/:id', getuser, async (req, res) => {
     const noteId = req.params.id;
 
     try {
-        // Find the note and check if the user is the owner
+        
         const note = await Notes.findById(noteId);
         if (!note) {
             return res.status(404).json({ error: 'Note not found' });
@@ -104,7 +104,6 @@ router.delete('/deletenote/:id', getuser, async (req, res) => {
             return res.status(403).json({ error: 'Not authorized to delete this note' });
         }
 
-        // Delete the note
         await Notes.findByIdAndDelete(noteId);
         res.json({ message: 'Note deleted successfully' });
     } catch (error) {
