@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect, useCallback } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import NoteContext from '../context/notes/nodeContext';
+import { motion } from 'framer-motion'; // Import Framer Motion
 
 const Navbar = () => {
     const host = "http://localhost:5000";
@@ -8,7 +9,6 @@ const Navbar = () => {
     const navigate = useNavigate();
     const token = localStorage.getItem('token');
     const { setNotes } = useContext(NoteContext);
-
     const [userName, setUserName] = useState(''); // State to hold user name
     const loggedIn = token !== null;
 
@@ -23,7 +23,6 @@ const Navbar = () => {
                     "auth-token": token,
                 }
             });
-
             if (response.ok) {
                 const json = await response.json();
                 if (json.user.name) {
@@ -58,13 +57,27 @@ const Navbar = () => {
         return name ? name.charAt(0).toUpperCase() : ''; // Get the first letter and capitalize it
     };
 
+    // Animation Variants
+    const avatarVariants = {
+        hidden: { scale: 0, opacity: 0 },
+        visible: { scale: 1, opacity: 1, transition: { duration: 0.4, ease: "easeOut" } },
+    };
+
+    const linkVariants = {
+        hidden: { y: -10, opacity: 0 },
+        visible: { y: 0, opacity: 1, transition: { duration: 0.4, ease: "easeOut" } },
+    };
+
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
             <div className="container-fluid">
+                {/* Navbar Brand */}
                 <Link className="navbar-brand d-flex align-items-center" to="/">
                     <i className="bi bi-journals me-2"></i>
                     Quick Notes
                 </Link>
+
+                {/* Navbar Toggler */}
                 <button
                     className="navbar-toggler"
                     type="button"
@@ -76,50 +89,60 @@ const Navbar = () => {
                 >
                     <span className="navbar-toggler-icon"></span>
                 </button>
+
+                {/* Navbar Collapse */}
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                    {/* Navigation Links */}
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li className="nav-item">
+                        <motion.li variants={linkVariants} initial="hidden" animate="visible" className="nav-item">
                             <Link className={`nav-link ${location.pathname === '/' ? 'active' : ''}`} aria-current="page" to="/">Home</Link>
-                        </li>
-                        <li className="nav-item">
+                        </motion.li>
+                        <motion.li variants={linkVariants} initial="hidden" animate="visible" className="nav-item">
                             <Link className={`nav-link ${location.pathname === '/About' ? 'active' : ''}`} to="/About">About</Link>
-                        </li>
+                        </motion.li>
                     </ul>
+
+                    {/* User Authentication */}
                     <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
                         {loggedIn ? (
                             <>
-                                <li className="nav-item">
-
-                                    {/* Display initials in a circle */}
+                                {/* Avatar */}
+                                <motion.li variants={avatarVariants} initial="hidden" animate="visible" className="nav-item">
                                     <Link to="/Profile" className='nav-link text-light d-flex align-items-center'>
-                                        <div className="avatar me-2">
+                                        <motion.div
+                                            className="avatar me-2"
+                                        >
                                             {getInitials(userName)}
-                                        </div>
+                                        </motion.div>
                                         Hello, {userName}
                                     </Link>
+                                </motion.li>
 
-                                </li>
-                                <li className="nav-item">
+                                {/* Logout Button */}
+                                <motion.li variants={linkVariants} initial="hidden" animate="visible" className="nav-item">
                                     <button
-                                        className="nav-link d-flex align-items-center btn btn-link"
+                                        className="nav-link d-flex align-items-center btn btn-link text-danger"
                                         onClick={handleLogout}
                                     >
                                         Logout
                                     </button>
-                                </li>
+                                </motion.li>
                             </>
                         ) : (
                             <>
-                                <li className="nav-item">
+                                {/* Login Link */}
+                                <motion.li variants={linkVariants} initial="hidden" animate="visible" className="nav-item">
                                     <Link className={`nav-link d-flex align-items-center ${location.pathname === '/Login' ? 'active' : ''}`} to="/Login">
                                         Login
                                     </Link>
-                                </li>
-                                <li className="nav-item">
+                                </motion.li>
+
+                                {/* Signup Link */}
+                                <motion.li variants={linkVariants} initial="hidden" animate="visible" className="nav-item">
                                     <Link className={`nav-link d-flex align-items-center ${location.pathname === '/Signup' ? 'active' : ''}`} to="/Signup">
                                         Sign Up
                                     </Link>
-                                </li>
+                                </motion.li>
                             </>
                         )}
                     </ul>

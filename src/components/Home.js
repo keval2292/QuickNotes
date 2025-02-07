@@ -8,7 +8,7 @@ const Home = () => {
 
   return (
     <>
-      <Notes  />
+      <Notes />
     </>
   );
 };

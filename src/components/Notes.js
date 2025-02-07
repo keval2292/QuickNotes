@@ -2,17 +2,14 @@ import React, { useContext, useRef, useState } from 'react';
 import noteContext from '../context/notes/nodeContext'; // Ensure the path is correct
 import Noteitem from './Noteitem';
 import AddNote from './AddNote';
+import { motion } from 'framer-motion';
 
 const Notes = () => {
-    // Get context values
     const context = useContext(noteContext);
     const { notes, updatenote } = context;
     const [note, setNote] = useState({ _id: "", title: "", description: "", tag: "" });
-
-    // Reference to the modal element
     const modalRef = useRef(null);
 
-    // Function to trigger modal and set current note data
     const handleUpdateNote = (note) => {
         setNote({
             _id: note._id,
@@ -20,18 +17,14 @@ const Notes = () => {
             description: note.description,
             tag: note.tag,
         });
-
-        // Open the modal programmatically using Bootstrap's modal API
         const modal = new window.bootstrap.Modal(modalRef.current);
         modal.show();
     };
 
-    // Function to handle input change in modal
     const handleChange = (e) => {
         setNote({ ...note, [e.target.name]: e.target.value });
     };
 
-    // Handle the save button click in the modal
     const handleSaveNote = () => {
         updatenote(note._id, note.title, note.description, note.tag);
         const modal = window.bootstrap.Modal.getInstance(modalRef.current);
@@ -41,21 +34,24 @@ const Notes = () => {
     return (
         <>
             <AddNote />
-            <div
+            <motion.div
                 className="modal fade animate__animated animate__fadeIn animate__faster"
                 id="exampleModal"
                 ref={modalRef}
                 tabIndex="-1"
                 aria-labelledby="exampleModalLabel"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3 }}
             >
                 <div className="modal-dialog modal-dialog-centered modal-lg">
                     <div className="modal-content rounded-4 shadow-lg border-0">
-                        {/* Dark Background for the header */}
                         <div className="modal-header bg-dark text-white">
                             <h1 className="modal-title fs-5" id="exampleModalLabel">Update Note</h1>
                             <button
                                 type="button"
-                                className="btn-close btn-close-white"  // White close button for dark header
+                                className="btn-close btn-close-white"
                                 data-bs-dismiss="modal"
                                 aria-label="Close"
                             ></button>
@@ -108,14 +104,26 @@ const Notes = () => {
                         </div>
                     </div>
                 </div>
-            </div>
-
+            </motion.div>
             <div className='container'>
-                <h2 className="text-center mt-5 animate__animated animate__fadeInDown">View All Notes</h2>
+                <motion.h2
+                    className="text-center mt-5 animate__animated animate__fadeInDown"
+                    initial={{ y: -50, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ duration: 0.5 }}
+                >
+                    View All Notes
+                </motion.h2>
                 {notes.length === 0 && (
-                    <div className="alert alert-warning text-center mt-4" role="alert">
+                    <motion.div
+                        className="alert alert-warning text-center mt-4"
+                        role="alert"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.5, duration: 0.5 }}
+                    >
                         <strong>No Notes To Display</strong>
-                    </div>
+                    </motion.div>
                 )}
                 <div className="row mt-4">
                     {notes.map((note, index) => (

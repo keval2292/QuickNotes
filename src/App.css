@@ -84,11 +84,9 @@
 
 .button-container {
   display: flex;
-  /* Use flex to arrange buttons horizontally */
   gap: 0.1rem;
-  /* Add space between buttons */
   flex-shrink: 0;
-  /* Prevent buttons from shrinking */
+  
 }
 
 .card-header {
