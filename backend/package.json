@@ -4,10 +4,12 @@
   "description": "quicknotes - your notes on the online.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npm install --production",
-    "dev" : "nodemon ./index.js"
-  },
+  "start": "node ./index.js",
+  "test": "echo \"Error: no test specified\" && exit 1",
+  "build": "npm install --production",
+  "dev": "nodemon ./index.js"
+}
+,
   "author": "",
   "license": "ISC",
   "dependencies": {
