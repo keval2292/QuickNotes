@@ -14,7 +14,7 @@ const Profile = () => {
                 return;
             }
             try {
-                const response = await fetch('http://localhost:5000/api/auth/getuser', {
+                const response = await fetch('https://quicknotes-xw3t.onrender.com/api/auth/getuser', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

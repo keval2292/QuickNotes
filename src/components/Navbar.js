@@ -4,7 +4,7 @@ import NoteContext from '../context/notes/nodeContext';
 import { motion } from 'framer-motion'; // Import Framer Motion
 
 const Navbar = () => {
-    const host = "http://localhost:5000";
+    const host = "https://quicknotes-xw3t.onrender.com";
     const location = useLocation();
     const navigate = useNavigate();
     const token = localStorage.getItem('token');

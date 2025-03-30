@@ -9,7 +9,7 @@ const Login = () => {
     const [login, setLogin] = useState({ email: "", password: "" });
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
-    const host = "http://localhost:5000";
+    const host = "https://quicknotes-xw3t.onrender.com";
 
     const handleSubmit = async (e) => {
         e.preventDefault();

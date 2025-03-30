@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 const NoteState = (props) => {
 
-  const host = "http://localhost:5000";
+  const host = "https://quicknotes-xw3t.onrender.com";
   const navigate = useNavigate();
   const [notes, setNotes] = useState([]); 
   const [alert, setAlert] = useState({ message: '', type: '', show: false });
