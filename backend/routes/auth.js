@@ -97,7 +97,7 @@ router.post('/forgotpassword', [body('email', 'Enter a valid email').isEmail()],
         }
 
         const resetToken = jwt.sign({ id: user._id }, 'thisismysercretcode.', { expiresIn: '1h' });
-        const resetLink = `http://localhost:3000/resetpassword/${resetToken}`;
+        const resetLink = `https://quick-notes-omega.vercel.app/resetpassword/${resetToken}`;
 
         const mailOptions = {
             from: 'ramanikeval30@gmail.com',
