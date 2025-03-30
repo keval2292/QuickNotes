@@ -4,7 +4,8 @@
   "description": "quicknotes - your notes on the online.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npm install --production"
   },
   "author": "",
   "license": "ISC",
